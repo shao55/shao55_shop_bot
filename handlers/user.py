@@ -23,6 +23,19 @@ async def show_categories(message: types.Message):
         reply_markup=categories_kb(categories)
     )
 
+# Обработка нажатий кнопок "Меню", "Корзина" и "Помощь"
+@router.message(lambda message: message.text == "🍔 Меню")
+async def menu(message: types.Message):
+    await message.answer("Вы выбрали Меню.")
+
+@router.message(lambda message: message.text == "🛒 Корзина")
+async def cart(message: types.Message):
+    await message.answer("Вы выбрали Корзину.")
+
+@router.message(lambda message: message.text == "🆘 Помощь")
+async def help(message: types.Message):
+    await message.answer("Вы выбрали Помощь.")
+
 # Функция для регистрации обработчиков
 def register_handlers(dp):
     dp.include_router(router)
